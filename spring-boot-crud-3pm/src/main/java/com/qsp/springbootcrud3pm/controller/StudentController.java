@@ -18,40 +18,43 @@ import com.qsp.springbootcrud3pm.service.StudentService;
 public class StudentController {
 	
 	@Autowired
-	StudentService service;
+	StudentService studentService;
 	
-	// insert Method for Student
-	@PostMapping("/arpitInsert")
-	public void insertStudent(@RequestBody Student student) {
-		
-		service.insertStudent(student);
-		
-	}
-	//get by id
-	@GetMapping("/getStudentId/{id}")
-	public int getById(@PathVariable int id) {
-		
-		return service.getById(id);
+	// insert Method-------------------------------------------------------------------
+	@PostMapping("/insertStudent")
+		public Student insertStudent(@RequestBody Student student) {	
+			return studentService.insertStudent(student);
 		
 	}
 	
-	//delete by id
-	@DeleteMapping("/deleteById/{id}")
-	public String deleteById(@PathVariable int id) {
-		return service.deleteById(id);
+	//get by id------------------------------------------------------------------------
+	@GetMapping("/getByIdStudent/{studentId}")
+	public Student getByIdStudent(@PathVariable int studentId) {
+		Student student = studentService.getByIdStudent(studentId);
+		return student;
+		
 	}
 	
-	//update method 
-	@PutMapping("/updateMapping/{id}")
-	public String updateStudent(@RequestBody Student student, @PathVariable int id) {
-		return service.updateStudent(student, id);
+	//delete by id----------------------------------------------------------------------
+	@DeleteMapping("/deleteStudent/{studentId}")
+	public String deleteById(@PathVariable int studentId) {
+		return studentService.deleteById(studentId);
+		
 	}
 	
-	//display method
-	@GetMapping("/displayAll")
-		public List<Student> displayAllStudent(){
-			return service.displayAllStudent();
-		}
+	//update method--------------------------------------------------------------------- 
+	@PutMapping("/updateStudent/{studentId}")
+	public String updateStudent(@RequestBody Student student, @PathVariable int studentId) {
+		return studentService.updateStudent(student, studentId);
+		
+	}
+	
+	//display method--------------------------------------------------------------------
+	@GetMapping("/displayAllStudent")
+	public List<Student> displayAllStudent(){
+		return studentService.displayAllStudent();
+		
+	}
 		
 
 }

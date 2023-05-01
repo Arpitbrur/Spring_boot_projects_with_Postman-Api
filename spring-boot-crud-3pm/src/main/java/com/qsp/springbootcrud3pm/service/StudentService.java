@@ -12,44 +12,41 @@ public class StudentService {
 	@Autowired
 	StudentDao dao;
 	
-	//insert method for Student
-	public void insertStudent(Student student) {
-		
-		dao.insertStudent(student);		
+	//insert method-----------------------------------------------------------------
+		public Student insertStudent(Student student) {	
+			return dao.insertStudent(student);		
 	}
 	
-	//get by Id
-	public int getById(int id) {
-		
-		return id;
-		
+	//get by Id---------------------------------------------------------------------
+	public Student getByIdStudent(int studentId) {
+		return dao.getByIdStudent(studentId);
+				
 	}
 	
 	// delete by id
-	public String deleteById(int id) {
+	public String deleteById(int studentId) {
 		
-		if(dao.getById(id) !=0) {
-			dao.deleteById(id);
-			return "Data.......... delete Successfully..";
+		if(dao.getByIdStudent(studentId) != null) {
+			dao.deleteById(studentId);
+			return "Data deleted successfully..................";
 		}else {
-			return "Given id id not present";
+			return " Given id is not present in database...........";
 		}
 		
 	}
 	
-	// update method
-	public String updateStudent(Student student, int id) {
+	// update method----------------------------------------------------------------
+	public String updateStudent(Student student, int studentId) {
 		
-		if(dao.getById(id)!=0) {
-			dao.updateStudent(student, id);
-			
-			return "Data ....... update successfully...";
+		if(dao.getByIdStudent(studentId) != null) {
+			dao.updateStudent(student, studentId);			
+			return "Data updated successfully..............";
 		}else {
-			return "Given id is not present";
+			return "Given id is not present in database............";
 		}
 	}
 	
-	// display method
+	// display method----------------------------------------------------------------
 		public List<Student> displayAllStudent(){
 			return dao.displayAllStudent();
 		}

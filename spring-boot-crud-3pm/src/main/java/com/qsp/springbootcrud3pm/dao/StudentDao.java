@@ -13,63 +13,67 @@ import com.qsp.springbootcrud3pm.repository.StudentRepository;
 public class StudentDao {
 
 	@Autowired            // it is use to create a object.
-	StudentRepository repository;
+	StudentRepository studentRepository;
 	
-	//insert method for Student
-	public void insertStudent(Student student) {	
-		repository.save(student);
+	//insert method-----------------------------------------------------------------
+	public Student insertStudent(Student student) {	
+		return studentRepository.save(student);
 	}
 	
-	//getId
-	public int getById(int id) {
-		Optional<Student> optional = repository.findById(id);
+	// getById----------------------------------------------------------------------
+	public Student getByIdStudent(int studentId) {
+		Optional<Student> optional = studentRepository.findById(studentId);
 		
 		if(optional.isPresent()){
-			return optional.get().getId();
+			Student student = optional.get();
+			return student;
 		}else {
-			return 0;
+			return null;
 		}
 	}
 	
 	
-	//delete by Id
-	public void deleteById(int id) {
-		Optional<Student> optional= repository.findById(id);
+	//deleteById--------------------------------------------------------------------
+	public int deleteById(int studentId) {
+		Optional<Student> optional= studentRepository.findById(studentId);
 		
 		if(optional.isPresent()) {
 			Student student=optional.get();
-			
-			repository.delete(student);
+			int studentId1 = optional.get().getStudentId();
+			studentRepository.delete(student);
+			return studentId1;	
 		}
+		return 0;
+		
 	}
 	
-	//update Student
-	public void updateStudent(Student student, int id) {
+	//update Student-----------------------------------------------------------------
+	public void updateStudent(Student student, int studentId) {
 		
-		Optional<Student> optional = repository.findById(id);
-		Student student2 = optional.get();
+		Optional<Student> optional = studentRepository.findById(studentId);
+		Student student1 = optional.get();
 		if(optional.isPresent()) {
 			
-			if((student.getName()!= null) && (student.getEmail() != null)) {
-				student2.setEmail(student.getEmail());
-				student2.setName(student.getName());
+			if((student.getStudentName() != null) && (student.getStudentEmail() != null)) {
+				student1.setStudentName(student.getStudentName());
+				student1.setStudentEmail(student.getStudentEmail());				
+				studentRepository.save(student1);
 				
-				repository.save(student2);
-				
-			}else if(student.getName() !=null) {
-				student2.setName(student.getName());
-				repository.save(student2);
+			}else if(student.getStudentName() !=null) {
+				student1.setStudentName(student.getStudentName());
+				studentRepository.save(student1);
 			}else {
-				student2.setEmail(student.getEmail());
-				repository.save(student2);
+				student1.setStudentEmail(student.getStudentEmail());
+				studentRepository.save(student1);
 			}	
 			
 		}
 	}
 	
 	
-	// display method
+	// display method------------------------------------------------------------------
 	public List<Student> displayAllStudent(){
-		return repository.findAll();
+		return studentRepository.findAll();
 	}
+	
 }

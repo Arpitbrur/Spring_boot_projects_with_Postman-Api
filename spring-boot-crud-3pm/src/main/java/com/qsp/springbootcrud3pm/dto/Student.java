@@ -5,28 +5,29 @@ import jakarta.persistence.Id;
 
 @Entity                                 // for table
 public class Student {
-	@Id                                // bcz table id is primary key
-	private int id;
-	private String Name;
-	private String email;
 	
-	public int getId() {
-		return id;
+	@Id                                // bcz table id is primary key
+	private int studentId;
+	private String studentName;
+	private String studentEmail;
+	public int getStudentId() {
+		return studentId;
 	}
-	public void setId(int id) {
-		this.id = id;
+	public void setStudentId(int studentId) {
+		this.studentId = studentId;
 	}
-	public String getName() {
-		return Name;
+	public String getStudentName() {
+		return studentName;
 	}
-	public void setName(String name) {
-		Name = name;
+	public void setStudentName(String studentName) {
+		this.studentName = studentName;
 	}
-	public String getEmail() {
-		return email;
+	public String getStudentEmail() {
+		return studentEmail;
 	}
-	public void setEmail(String email) {
-		this.email = email;
+	public void setStudentEmail(String studentEmail) {
+		this.studentEmail = studentEmail;
 	}
+	
 	
 }
