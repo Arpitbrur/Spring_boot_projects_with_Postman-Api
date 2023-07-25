@@ -1,5 +1,7 @@
 package com.qsp.springbootonetoonebi3pm.controller;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,19 +25,18 @@ public class CricketersController {
 	
 	//insert method------------------------------------------------------------------------
 	@PostMapping("/saveCricketers")
-	public Cricketers insertCricketers(@RequestBody Cricketers cricketers) {
-		return cricketrsService.insertCricketers(cricketers);
+	public List<Object> insertCricketers(@RequestBody Cricketers cricketers) {
+		
+		Cricketers cricketers2=cricketrsService.insertCricketers(cricketers);
+		
+		List<Object> objects = new ArrayList<Object>(Arrays.asList(cricketers2,cricketers2.getRecord()));
+	
+		return objects;
 	}
 		
-	//getCricketerRecord-------------------------------------------------------------------
-	@GetMapping("/getRecordId/{cricketersId}")
-	public Record getRecordById(@PathVariable int cricketersId) {
-		return cricketrsService.getRecordById(cricketersId);
-	}
-	
 	//getCricketerById-------------------------------------------------------------------------
-	@GetMapping("/getCricketersId/{cricketersId}")
-	public Cricketers getCricketersById(@PathVariable int cricketersId) {
+	@GetMapping("/getCricketersById/{cricketersId}")
+	public List<Object> getCricketersById(@PathVariable int cricketersId){
 		return cricketrsService.getCricketersById(cricketersId);
 	}	
 			
@@ -53,7 +54,17 @@ public class CricketersController {
 		
 	// getAllCricketers--------------------------------------------------------------------
 	@GetMapping("/getAllCricketers")
-	public List<Cricketers> displayAllCricketers(){
-		return cricketrsService.displayAllCricketers();
+	public List<Object> displayAllCricketers(){
+		
+		List<Cricketers> cricketers = cricketrsService.displayAllCricketers();
+		
+		List<Object> list = new ArrayList<Object>();
+		
+		for (Cricketers cricketers2 : cricketers) {
+			list.add(cricketers2);
+			list.add(cricketers2.getRecord());
+		}
+		
+		return list;
 	}
 }

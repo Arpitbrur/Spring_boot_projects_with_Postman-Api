@@ -1,5 +1,6 @@
 package com.qsp.springbootonetoonebi3pm.dao;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -21,22 +22,18 @@ public class CricketersDao {
 		return cricketersRepository.save(cricketers);
 	}
 	
-	//getCricketerRecord-------------------------------------------------------------------
-	public Record getRecordById(int cricketersId) {
-		Optional<Cricketers> optional = cricketersRepository.findById(cricketersId);
-		if(optional.isPresent()) {
-			return optional.get().getRecord();
-		}else {
-			return null;
-		}
-	}
-	
-	
 	//getCricketerById-------------------------------------------------------------------------
-	public Cricketers getCricketersById(int cricketersId) {
+	public List<Object> getCricketersById(int cricketersId){
+		List<Object> cricketers = new ArrayList<Object>();
+		
 		Optional<Cricketers> optional = cricketersRepository.findById(cricketersId);
 		if(optional.isPresent()) {
-			return optional.get();
+			Cricketers cricketers1 = optional.get();
+			Record record = cricketers1.getRecord();
+			
+			cricketers.add(cricketers1);
+			cricketers.add(record);
+			return cricketers;
 		}else {
 			return null;
 		}
@@ -86,4 +83,19 @@ public class CricketersDao {
 	public List<Cricketers> displayAllCricketers(){
 		return cricketersRepository.findAll();
 	}
+	
+//	public List<Cricketers> displayAllCricketers(){
+//		List<Cricketers> list = new ArrayList<Cricketers>();
+//		List<Record> list1 = new ArrayList<Record>();
+//		
+//		List<Cricketers> cricketers = cricketersRepository.findAll();
+//		for (Cricketers cricketer : cricketers) {
+//			list.add(cricketer);
+//			list1.add(cricketer.getRecord());
+//		
+//		}
+//		
+//		return list;
+//	}
+	
 }

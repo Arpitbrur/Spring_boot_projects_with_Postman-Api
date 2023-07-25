@@ -21,12 +21,7 @@ public class CricketrsService {
 	}
 		
 	//getCricketerRecord-------------------------------------------------------------------
-	public Record getRecordById(int cricketersId) {
-		return cricketersDao.getRecordById(cricketersId);
-	}
-	
-	//getCricketerById-------------------------------------------------------------------------
-	public Cricketers getCricketersById(int cricketersId) {
+	public List<Object> getCricketersById(int cricketersId){
 		return cricketersDao.getCricketersById(cricketersId);
 	}
 	

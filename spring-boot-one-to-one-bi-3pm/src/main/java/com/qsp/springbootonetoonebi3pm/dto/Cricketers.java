@@ -24,7 +24,6 @@ public class Cricketers {
 	
 	@OneToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name="recordId")
-	
 	@JsonBackReference
 	private Record record;
 

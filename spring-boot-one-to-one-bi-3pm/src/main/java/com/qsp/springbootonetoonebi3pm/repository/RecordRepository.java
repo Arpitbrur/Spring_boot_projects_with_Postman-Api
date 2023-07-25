@@ -6,4 +6,5 @@ import com.qsp.springbootonetoonebi3pm.dto.Record;
 
 public interface RecordRepository extends JpaRepository<Record, Integer> {
 
+
 }

@@ -2,6 +2,7 @@ package com.qsp.springbootonetoonebi3pm.dto;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
@@ -20,7 +21,7 @@ public class Record {
 	@Column(name="recordHundreds")
     private int recordHundred;
 	
-	@OneToOne(mappedBy = "record")
+	@OneToOne(mappedBy = "record", cascade = CascadeType.ALL)
 	@JsonBackReference
 	private Cricketers cricketers;
 
