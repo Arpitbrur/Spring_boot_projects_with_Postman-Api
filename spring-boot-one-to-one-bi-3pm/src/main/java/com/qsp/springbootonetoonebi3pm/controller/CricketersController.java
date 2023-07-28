@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.qsp.springbootonetoonebi3pm.dto.Cricketers;
-import com.qsp.springbootonetoonebi3pm.dto.Record;
 import com.qsp.springbootonetoonebi3pm.service.CricketrsService;
 
 @RestController

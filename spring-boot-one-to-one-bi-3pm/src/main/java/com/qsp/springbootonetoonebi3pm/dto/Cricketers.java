@@ -67,5 +67,4 @@ public class Cricketers {
 		this.record = record;
 	}
 	
-	
 }

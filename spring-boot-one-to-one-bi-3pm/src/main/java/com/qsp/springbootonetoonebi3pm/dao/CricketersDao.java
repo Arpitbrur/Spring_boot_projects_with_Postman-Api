@@ -64,11 +64,14 @@ public class CricketersDao {
 			cricketers2.setCricketersName(cricketers.getCricketersName());
 			cricketers2.setCricketersCountry(cricketers.getCricketersCountry());
 			cricketers2.setCricketersAge(cricketers.getCricketersAge());
+			cricketers2.setRecord(cricketers.getRecord());
+			
 			
 			return cricketersRepository.save(cricketers2);
 		}else if((cricketers.getCricketersName()!= null) && (cricketers.getCricketersCountry()!=null)){
 			cricketers2.setCricketersName(cricketers.getCricketersName());
 			cricketers2.setCricketersCountry(cricketers.getCricketersCountry());
+			cricketers2.setRecord(cricketers.getRecord());
 
 
 			return cricketersRepository.save(cricketers2);
